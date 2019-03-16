@@ -57,7 +57,7 @@ class AiPlat(object):
             dict_error['msg'] = "system error"
             return dict_error
 
-
+    '''通用OCR'''
     def getOcrGeneralocr(self, image):
         self.url = url_preffix + 'ocr/ocr_generalocr'
         setParams(self.data, 'app_id', self.app_id)
@@ -69,7 +69,8 @@ class AiPlat(object):
         sign_str = genSignString(self.data)
         setParams(self.data, 'sign', sign_str)
         return self.invoke(self.data)
-
+    
+    '''文本翻译'''
     def getNlpTextTrans(self, text, type):
         self.url = url_preffix + 'nlp/nlp_texttrans'
         setParams(self.data, 'app_id', self.app_id)
@@ -81,7 +82,8 @@ class AiPlat(object):
         sign_str = genSignString(self.data)
         setParams(self.data, 'sign', sign_str)
         return self.invoke(self.data)
-
+    
+    '''语音识别'''
     def getAaiWxAsrs(self, chunk, speech_id, end_flag, format_id, rate, bits, seq, chunk_len, cont_res):
         self.url = url_preffix + 'aai/aai_wxasrs'
         setParams(self.data, 'app_id', self.app_id)
