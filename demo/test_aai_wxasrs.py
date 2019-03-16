@@ -1,6 +1,6 @@
 #-*- coding: UTF-8 -*-
 import sys
-sys.path.append('../SDK')  
+import apiutil  
 import os
 import optparse
 import time
@@ -17,14 +17,14 @@ if __name__ == '__main__':
     for_mat = 8
     rate = 16000
     bits = 16
-    cont_res = 1                
+    cont_res = 1
     once_size = 6400
     file_path = '../data/wxasrs.mp3'
-    f = open(file_path, 'r')
-    md5obj = hashlib.md5()  
-    md5obj.update(f.read())  
-    hash = md5obj.hexdigest()  
-    speech_id = str(hash).upper() 
+    f = open(file_path, 'rb')
+    md5obj = hashlib.md5()
+    md5obj.update(f.read())
+    hash = md5obj.hexdigest()
+    speech_id = str(hash).upper()
     f.close()
     f = open(file_path, 'rb')
     file_size = os.path.getsize(file_path)
@@ -42,15 +42,15 @@ if __name__ == '__main__':
 
             ai_obj = apiutil.AiPlat(app_id, app_key)
 
-            print '----------------------SEND REQ----------------------'
+            print('----------------------SEND REQ----------------------')
             rsp = ai_obj.getAaiWxAsrs(chunk, speech_id, end, for_mat, rate, bits, seq, chunk_size, cont_res)
             seq += chunk_size
             if rsp['ret'] == 0:
-                print json.dumps(rsp, encoding="UTF-8", ensure_ascii=False, sort_keys=False, indent=4)
-                print '----------------------API SUCC----------------------'
+                print(json.dumps(rsp, ensure_ascii=False, sort_keys=False, indent=4))
+                print('----------------------API SUCC----------------------')
             else:
-                print json.dumps(rsp, encoding="UTF-8", ensure_ascii=False, sort_keys=False, indent=4)
-                print '----------------------API FAIL----------------------'
+                print(json.dumps(rsp, ensure_ascii=False, sort_keys=False, indent=4))
+                print('----------------------API FAIL----------------------')
     finally:
         f.close()
 
