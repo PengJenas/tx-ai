@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 import hashlib
 import urllib.request, urllib.parse, urllib.error
-import urllib.request, urllib.error, urllib.parse
 import base64
 import json
 import time
