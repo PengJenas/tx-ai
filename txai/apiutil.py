@@ -5,8 +5,12 @@ import base64
 import json
 import time
 
-url_preffix = 'https://api.ai.qq.com/fcgi-bin/'
+# 全局取消证书验证
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
+
+url_preffix = 'https://api.ai.qq.com/fcgi-bin/'
 
 def setParams(array, key, value):
     array[key] = value
