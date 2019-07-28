@@ -61,6 +61,7 @@ class AiPlat(object):
             dict_error['httpcode'] = -1
             dict_error['msg'] = "system error"
             return dict_error
+        
     '''通用OCR'''
     def getOcrGeneralocr(self, image):
         self.url = url_preffix + 'ocr/ocr_generalocr'
@@ -87,7 +88,6 @@ class AiPlat(object):
         setParams(self.data, 'sign', sign_str)
         return self.invoke(self.data)
         
-
     '''文本翻译'''
     def getNlpTextTrans(self, text, type):
         self.url = url_preffix + 'nlp/nlp_texttrans'
